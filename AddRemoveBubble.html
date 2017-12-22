@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="container my-5">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#menu1">TASTE</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#home">FLAVORS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#menu2">STRAINS</a>
+            </li>
+        </ul>
+        <div class="tab-content my-3">
+            <div class="tab-pane active p-3 container" id="home">
+                <div id="bubble-panel">
+                    <div id="div-1">
+                        <div class="col-md-3 float-left text-center">
+                            <div>Coconut <i class="fa fa-plus pointer ToAddRemove" data-id="1" aria-hidden="true"></i></div>
+                            <div class="bubble-div m-auto">
+                                <img src="Images/coconut.png" />
+                            </div>
+                        </div>
+                    </div>
+                    <div id="div-2">
+                        <div class="col-md-3 float-left text-center">
+                            <div>Apple <i class="fa fa-plus pointer ToAddRemove" data-id="2" aria-hidden="true"></i></div>
+                            <div class="bubble-div m-auto">
+                                <img src="Images/apple.png" />
+                            </div>
+                        </div>
+                    </div>
+                    <div id="div-3">
+                        <div class="col-md-3 float-left text-center">
+                            <div>Cherry <i class="fa fa-plus pointer ToAddRemove" data-id="3" aria-hidden="true"></i></div>
+                            <div class="bubble-div m-auto">
+                                <img src="Images/cherry.png" />
+                            </div>
+                        </div>
+                    </div>
+                    <div id="div-4">
+                        <div class="col-md-3 float-left text-center">
+                            <div>
+                                Lemon <i class="fa fa-plus pointer ToAddRemove" data-id="4" aria-hidden="true"></i>
+                            </div>
+                            <div class="bubble-div m-auto">
+                                <img src="Images/lemon.png" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col mt-5 mx-auto border p-5 bg-light">
+                    <div id="content-panel">
+                        <!--content to be moved while adding -->
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="tab-pane container" id="menu1">
+            </div>
+            <div class="tab-pane container" id="menu2">...</div>
+        </div>
+    </div>
+    <style type="text/css">
+        .pointer {
+            cursor: pointer;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".ToAddRemove").click(function () {
+                if ($(this).hasClass("fa-plus") == true) {
+                    debugger;
+                    $(this).removeClass("fa-plus").addClass("fa-minus");
+                    var ToAddRemoveid = $(this).attr('data-id');
+                    $(this).attr("data-id", "" + ToAddRemoveid + "-minus");
+                    //$("#content-panel").append("<div id='div-" + ToAddRemoveid + "-minus'>" + $("#div-" + ToAddRemoveid).html() + "</div>");
+                    //$("#div-" + ToAddRemoveid).remove();
+                    var MoveToContent = $("#div-" + ToAddRemoveid).attr("id", "div-" + ToAddRemoveid + "-minus").detach();
+                    MoveToContent.appendTo("#content-panel");
+                    return false;
+                }
+                if ($(this).hasClass("fa-minus") == true) {
+                    debugger;
+                    $(this).removeClass("fa-minus").addClass("fa-plus");
+                    var ToAddRemoveida = $(this).attr('data-id');
+                    var a = ToAddRemoveida.split('-');
+                    $(this).attr("data-id", "" + a[0]);
+                    //$("#bubble-panel").append("<div id='div-" + ToAddRemoveid[0] + "'>" + $("#div-" + ToAddRemoveid).html() + "</div>");
+                    //$("#div-" + ToAddRemoveid).remove();
+                    var MoveToBubble = $("#div-" + ToAddRemoveida).attr("id", "div-" + a[0] + "").detach();
+                    MoveToBubble.appendTo("#bubble-panel");
+                    return false;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
